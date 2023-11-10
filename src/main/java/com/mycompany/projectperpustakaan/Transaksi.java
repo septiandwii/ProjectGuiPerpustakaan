@@ -15,6 +15,7 @@ public class Transaksi extends javax.swing.JFrame {
      */
     public Transaksi() {
         initComponents();
+//        cek
     }
 
     /**
