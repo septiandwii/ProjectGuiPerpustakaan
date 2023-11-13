@@ -11,7 +11,7 @@ import java.sql.Statement;
  *
  * @author hafid punyaa
  */
-public class DeleteDBuku {
+public class DeleteDbBuku {
     String url = "jdbc:mysql://localhost:3306/database_perpustakaan";
     String username = "root";
     String password = "";
