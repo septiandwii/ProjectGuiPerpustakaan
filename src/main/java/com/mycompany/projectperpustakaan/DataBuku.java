@@ -135,6 +135,11 @@ public class DataBuku extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         btnSimpanBuku.setText("Simpan");
+        btnSimpanBuku.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimpanBukuActionPerformed(evt);
+            }
+        });
 
         buttonSimpanBuku.setText("Edit");
 
@@ -318,6 +323,10 @@ public class DataBuku extends javax.swing.JFrame {
         Home home = new Home();
         home.setVisible(true);
     }//GEN-LAST:event_buttonKeluarBukuActionPerformed
+
+    private void btnSimpanBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanBukuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSimpanBukuActionPerformed
 
     /**
      * @param args the command line arguments
