@@ -21,7 +21,7 @@ public class CreateDbBuku {
         try{
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection koneksi = DriverManager.getConnection(url,username,  password);
-            String query = String.format("insert into data_buku(kode_buku, judul_buku, nama_pengarang, penerbit, tahun_terbit, jenis_buku, status, jumlah_buku_tersedia)values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\");",kode_buku, judul_buku, , nama_pengarang, penerbit, tahun_buku, jenis_buku, status, jumlah_buku_tersedia);
+            String query = String.format("insert into data_buku(kode_buku, judul_buku, nama_pengarang, penerbit, tahun_terbit, jenis_buku, status, jumlah_buku_tersedia)values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\");",kode_buku, judul_buku, , nama_pengarang, penerbit, tahun_terbit, jenis_buku, status, jumlah_buku_tersedia);
             Statement st = koneksi.createStatement();
             st.executeUpdate(query);
             st.close();
