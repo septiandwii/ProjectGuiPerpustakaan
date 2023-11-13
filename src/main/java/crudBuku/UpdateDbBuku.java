@@ -22,7 +22,7 @@ public class UpdateDbBuku {
         try{
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection koneksi = DriverManager.getConnection(url,username,  password);
-            String query = String.format("update data_buku set kode_buku = \"%s\", judul_buku = \"%s\", nama_pengarang = \"%s\", penerbit = \"%s\", tahun_terbit = \"%s\", jenis_buku = \"%s\", status = \"%s\", jumlah_buku_tersedia = \"%s\" where kode_buku = \"%s\";" ,kode_buku, judul_buku, nama_pengarang, penerbit, tahun_terbit, jenis_buku, status, jumlah_buku_tersedia);
+            String query = String.format("update data_buku set kode_buku = \"%s\", judul_buku = \"%s\", nama_pengarang = \"%s\", penerbit = \"%s\", tahun_terbit = \"%s\", jenis_buku = \"%s\", status = \"%s\", jumlah_buku_tersedia = \"%s\" where kode_buku = \"%s\";" ,kode_buku, judul_buku, nama_pengarang, penerbit, tahun_terbit, jenis_buku, status, jumlah_buku_tersedia, kode_buku);
             Statement st = koneksi.createStatement();
             st.executeUpdate(query);
             st.close();
