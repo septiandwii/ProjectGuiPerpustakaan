@@ -12,6 +12,7 @@ import java.sql.Statement;
  *
  * @author hafid punyaa
  */
+//updateeeeee
 public class UpdateDbBuku {
     String url = "jdbc:mysql://localhost:3306/database_perpustakaan";
     String username = "root";
