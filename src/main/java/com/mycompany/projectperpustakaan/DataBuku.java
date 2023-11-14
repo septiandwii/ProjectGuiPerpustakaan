@@ -189,6 +189,7 @@ public class DataBuku extends javax.swing.JFrame {
 
         jLabel8.setText("Status :");
 
+        inpStatus.setEditable(false);
         inpStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inpStatusActionPerformed(evt);
@@ -433,7 +434,7 @@ public class DataBuku extends javax.swing.JFrame {
         CreateDbBuku inputData = new CreateDbBuku();
         DefaultTableModel tabelData2 = (DefaultTableModel) tabelDataBuku.getModel();   
    
-        inputData.inputData(Integer.parseInt(inpKodeBuku.getText()),inpJudulBuku.getText(),inpNamaPengarang.getText(),inpPenerbit.getText(),Integer.parseInt(inpTahunTerbit.getText()),inpJenisBuku.getText(),inpStatus.getText(),Integer.parseInt(inpJumlahBuku.getText()));
+        inputData.inputData(Integer.parseInt(inpKodeBuku.getText()),inpJudulBuku.getText(),inpNamaPengarang.getText(),inpPenerbit.getText(),Integer.parseInt(inpTahunTerbit.getText()),inpJenisBuku.getText(),Integer.parseInt(inpJumlahBuku.getText()));
         ResultSet rs = tampilData.tampilkanData(this.inpKodeBuku.getText());
         try{
             

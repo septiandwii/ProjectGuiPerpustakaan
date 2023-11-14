@@ -3,6 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.projectperpustakaan;
+import crudAnggota.TampilDataAnggota;
+import crudBuku.TampilDataBuku;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
 import org.jdatepicker.*;
 /**
  *
@@ -13,9 +20,89 @@ public class Transaksi extends javax.swing.JFrame {
     /**
      * Creates new form Transaksi
      */
+    TampilDataBuku tampilData = new TampilDataBuku();
+    int selectedRow = -1;
     public Transaksi() {
         initComponents();
-//        tol
+        // ini logic untuk combobox -> read semua data anggota
+        TampilDataAnggota dataAnggota = new TampilDataAnggota();
+        ResultSet rsA = dataAnggota.tampilkanDataSemuaAnggota();
+        try{
+            int i = 0;
+            while(rsA.next()){
+                pilihanNim.addItem(rsA.getString("nim"));
+                i++;
+            }
+        }catch(SQLException e){
+            System.out.println("Pesan Error : " + e.getMessage());
+        }
+        
+                
+        // ini logic tabel transaksi
+        String[] columns = {
+          "kode_buku", 
+          "judul_buku", 
+          "nama_pengarang", 
+          "penerbit", 
+          "tahun_terbit", 
+          "jenis_buku", 
+          "status", 
+          "jumlah_buku_tersedia"
+        };
+        DefaultTableModel model = new DefaultTableModel(columns, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        this.tabelDataBuku.setModel(model);
+        ResultSet rs = tampilData.tampilkanDataSemuaBuku();
+        
+        try{
+            int i = 0;
+            while(rs.next()){
+                model.addRow(new Object[]{rs.getString("kode_buku"), rs.getString("judul_buku"),rs.getString("nama_pengarang"), rs.getString("penerbit"), rs.getString("tahun_terbit"), rs.getString("jenis_buku"), rs.getString("status"), rs.getString("jumlah_buku_tersedia")});
+                i++;
+            }
+        }catch(SQLException e){
+            System.out.println("Pesan Error : " + e.getMessage());
+        }
+        
+        this.tabelDataBuku.addMouseListener(new MouseListener(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+//                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+//                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                int row = tabelDataBuku.getSelectedRow();
+                selectedRow = row;
+                inpKodeBuku.setText(tabelDataBuku.getValueAt(row, 0).toString());
+                inpNamaBuku.setText(tabelDataBuku.getValueAt(row, 1).toString());
+                inpNamaPengarang.setText(tabelDataBuku.getValueAt(row, 2).toString());
+                inpTahunTerbit.setText(tabelDataBuku.getValueAt(row, 3).toString());
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+//                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+//                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+//                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+        } );
+        // penutup logic tabel transaksi
+        
+        setVisible(true);
     }
 
     /**
@@ -28,7 +115,7 @@ public class Transaksi extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelDataBuku = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -36,11 +123,8 @@ public class Transaksi extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         inptKodePeminjaman = new javax.swing.JTextField();
-        inpNamaPeminjam = new javax.swing.JTextField();
-        inpNimPeminjam = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         inpKodeBuku = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -57,10 +141,11 @@ public class Transaksi extends javax.swing.JFrame {
         btnEditDatabase = new javax.swing.JButton();
         btnHapusDatabase = new javax.swing.JButton();
         btnKeluar = new javax.swing.JButton();
+        pilihanNim = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelDataBuku.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -71,7 +156,7 @@ public class Transaksi extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelDataBuku);
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel1.setText("DATA PEMINJAMAN BUKU PERPUSTAKAAN");
@@ -96,8 +181,6 @@ public class Transaksi extends javax.swing.JFrame {
         jLabel4.setText("Data Peminjam ");
 
         jLabel5.setText("Kode Peminjam  ");
-
-        jLabel6.setText("Nama                  ");
 
         jLabel7.setText("NIM ");
 
@@ -151,6 +234,12 @@ public class Transaksi extends javax.swing.JFrame {
             }
         });
 
+        pilihanNim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pilihanNimActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -169,18 +258,6 @@ public class Transaksi extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel4)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(inpNamaPeminjam, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel7)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(inpNimPeminjam, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(inptKodePeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addComponent(jLabel9)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -200,7 +277,15 @@ public class Transaksi extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel13)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(inpTanggalPeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(inpTanggalPeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel7))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(pilihanNim, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(inptKodePeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(14, 14, 14)
                                 .addComponent(btnKeluar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -247,14 +332,10 @@ public class Transaksi extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(inptKodePeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(inpNamaPeminjam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(inpNimPeminjam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(pilihanNim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addGap(2, 2, 2)
@@ -328,6 +409,11 @@ public class Transaksi extends javax.swing.JFrame {
         home.setVisible(true);
     }//GEN-LAST:event_btnKeluarActionPerformed
 
+    private void pilihanNimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pilihanNimActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_pilihanNimActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -341,9 +427,7 @@ public class Transaksi extends javax.swing.JFrame {
     private javax.swing.JButton btnSimpanDatabase;
     private javax.swing.JTextField inpKodeBuku;
     private javax.swing.JTextField inpNamaBuku;
-    private javax.swing.JTextField inpNamaPeminjam;
     private javax.swing.JTextField inpNamaPengarang;
-    private javax.swing.JTextField inpNimPeminjam;
     private javax.swing.JTextField inpTahunTerbit;
     private javax.swing.JTextField inpTanggalPeminjaman;
     private javax.swing.JTextField inptKodePeminjaman;
@@ -356,13 +440,13 @@ public class Transaksi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JComboBox<String> pilihanNim;
+    private javax.swing.JTable tabelDataBuku;
     // End of variables declaration//GEN-END:variables
 }
