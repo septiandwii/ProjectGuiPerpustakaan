@@ -248,6 +248,11 @@ public class DataBuku extends javax.swing.JFrame {
         });
 
         buttonCariBuku.setText("Cari");
+        buttonCariBuku.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCariBukuActionPerformed(evt);
+            }
+        });
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -479,6 +484,29 @@ public class DataBuku extends javax.swing.JFrame {
         inpStatus.setText("");
         inpJumlahBuku.setText("");
     }//GEN-LAST:event_buttonHapusBukuActionPerformed
+
+    private void buttonCariBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCariBukuActionPerformed
+                ResultSet rs;
+        if(!"".equals(buttonCariBuku.getText())) {
+            rs = tampilData.tampilkanData(buttonCariBuku.getText());
+        } else {
+            rs = tampilData.tampilkanDataSemuaBuku();
+        }
+        
+        DefaultTableModel tabel = (DefaultTableModel) tabelDataBuku.getModel();
+        
+        try{
+            for(var i = tabel.getRowCount() - 1; i >= 0; i--) {
+                tabel.removeRow(i);
+            }
+            while(rs.next()){
+                tabel.addRow(new Object[]{inpKodeBuku.getText(), inpJudulBuku.getText(), inpNamaPengarang.getText(),inpPenerbit.getText(), inpTahunTerbit.getText(), inpJenisBuku.getText(), inpStatus.getText(), inpJumlahBuku.getText()});
+            }
+            
+        }catch(SQLException e){
+            System.out.println("Pesan Error : " + e.getMessage());
+        }
+    }//GEN-LAST:event_buttonCariBukuActionPerformed
 
     /**
      * @param args the command line arguments
