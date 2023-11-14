@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.projectperpustakaan;
+import crudBuku.UpdateDbBuku;
 import crudBuku.CreateDbBuku;
 import crudBuku.CreateDbBuku;
 import crudBuku.DeleteDbBuku;
@@ -126,7 +127,7 @@ public class DataBuku extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelDataBuku = new javax.swing.JTable();
         btnSimpanBuku = new javax.swing.JButton();
-        buttonSimpanBuku = new javax.swing.JButton();
+        buttonEditBuku = new javax.swing.JButton();
         buttonHapusBuku = new javax.swing.JButton();
         buttonCariBuku = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
@@ -230,7 +231,12 @@ public class DataBuku extends javax.swing.JFrame {
             }
         });
 
-        buttonSimpanBuku.setText("Edit");
+        buttonEditBuku.setText("Edit");
+        buttonEditBuku.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEditBukuActionPerformed(evt);
+            }
+        });
 
         buttonHapusBuku.setText("Hapus");
 
@@ -298,7 +304,7 @@ public class DataBuku extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSimpanBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonSimpanBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonEditBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(buttonHapusBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -331,7 +337,7 @@ public class DataBuku extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(inpNamaPengarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSimpanBuku)
-                    .addComponent(buttonSimpanBuku)
+                    .addComponent(buttonEditBuku)
                     .addComponent(buttonHapusBuku))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -434,6 +440,15 @@ public class DataBuku extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inpStatusActionPerformed
 
+    private void buttonEditBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditBukuActionPerformed
+        // TODO add your handling code here:
+        UpdateDbBuku updateData = new UpdateDbBuku();
+        updateData.updateData(Integer.parseInt(inpKodeBuku.getText()),inpJudulBuku.getText(),inpNamaPengarang.getText(),inpPenerbit.getText(),Integer.parseInt(inpTahunTerbit.getText()),inpJenisBuku.getText(),inpStatus.getText(),Integer.parseInt(inpJumlahBuku.getText()));
+        DefaultTableModel tabel = (DefaultTableModel) tabelDataBuku.getModel();
+        tabel.addRow(new Object[]{inpKodeBuku.getText(), inpJudulBuku.getText(), inpNamaPengarang.getText(),inpPenerbit.getText(), inpTahunTerbit.getText(), inpJenisBuku.getText(), inpStatus.getText(), inpJumlahBuku.getText()});
+        tabel.removeRow(selectedRow);
+    }//GEN-LAST:event_buttonEditBukuActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -442,9 +457,9 @@ public class DataBuku extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSimpanBuku;
     private javax.swing.JButton buttonCariBuku;
+    private javax.swing.JButton buttonEditBuku;
     private javax.swing.JButton buttonHapusBuku;
     private javax.swing.JButton buttonKeluarBuku;
-    private javax.swing.JButton buttonSimpanBuku;
     private javax.swing.JTextField inpJenisBuku;
     private javax.swing.JTextField inpJudulBuku;
     private javax.swing.JTextField inpJumlahBuku;

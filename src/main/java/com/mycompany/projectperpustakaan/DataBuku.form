@@ -78,7 +78,7 @@
                   <Group type="102" attributes="0">
                       <Component id="btnSimpanBuku" min="-2" pref="73" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="buttonSimpanBuku" min="-2" pref="73" max="-2" attributes="0"/>
+                      <Component id="buttonEditBuku" min="-2" pref="73" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="buttonHapusBuku" min="-2" pref="73" max="-2" attributes="0"/>
                   </Group>
@@ -119,7 +119,7 @@
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="inpNamaPengarang" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnSimpanBuku" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="buttonSimpanBuku" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonEditBuku" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonHapusBuku" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -339,10 +339,13 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSimpanBukuActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="buttonSimpanBuku">
+    <Component class="javax.swing.JButton" name="buttonEditBuku">
       <Properties>
         <Property name="text" type="java.lang.String" value="Edit"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEditBukuActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonHapusBuku">
       <Properties>
