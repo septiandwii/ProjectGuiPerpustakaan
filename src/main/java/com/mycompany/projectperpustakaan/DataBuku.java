@@ -4,6 +4,7 @@
  */
 package com.mycompany.projectperpustakaan;
 import crudBuku.CreateDbBuku;
+import crudBuku.CreateDbBuku;
 import crudBuku.DeleteDbBuku;
 import crudBuku.TampilDataBuku;
 import crudBuku.UpdateDbBuku;
@@ -36,6 +37,65 @@ public class DataBuku extends javax.swing.JFrame {
           "status", 
           "jumlah_buku_tersedia"
         };
+        
+        DefaultTableModel model = new DefaultTableModel(columns, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        
+        this.tabelDataBuku.setModel(model);
+        ResultSet rs = tampilData.tampilkanDataSemuaBuku();
+        
+        try{
+            int i = 0;
+            while(rs.next()){
+                model.addRow(new Object[]{rs.getString("kode_buku"), rs.getString("judul_buku"),rs.getString("nama_pengarang"), rs.getString("penerbit"), rs.getString("tahun_terbit"), rs.getString("jenis_buku"), rs.getString("status"), rs.getString("jumlah_buku_tersedia")});
+                i++;
+            }
+        }catch(SQLException e){
+            System.out.println("Pesan Error : " + e.getMessage());
+        }
+        
+        this.tabelDataBuku.addMouseListener(new MouseListener(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+//                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+//                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                int row = tabelDataBuku.getSelectedRow();
+                selectedRow = row;
+                inpKodeBuku.setText(tabelDataBuku.getValueAt(row, 0).toString());
+                inpJudulBuku.setText(tabelDataBuku.getValueAt(row, 1).toString());
+                inpNamaPengarang.setText(tabelDataBuku.getValueAt(row, 2).toString());
+                inpPenerbit.setText(tabelDataBuku.getValueAt(row, 3).toString());
+                inpTahunTerbit.setText(tabelDataBuku.getValueAt(row, 4).toString());
+                inpJenisBuku.setText(tabelDataBuku.getValueAt(row, 5).toString());
+                inpStatus.setText(tabelDataBuku.getValueAt(row, 6).toString());
+                inpJumlahBuku.setText(tabelDataBuku.getValueAt(row, 7).toString());
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+//                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+//                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+//                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+        } );
+        
+        setVisible(true);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -334,10 +394,6 @@ public class DataBuku extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inpJenisBukuActionPerformed
 
-    private void inpStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inpStatusActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inpStatusActionPerformed
-
     private void inpJumlahBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inpJumlahBukuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inpJumlahBukuActionPerformed
@@ -353,12 +409,30 @@ public class DataBuku extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonKeluarBukuActionPerformed
 
     private void btnSimpanBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanBukuActionPerformed
-        // TODO add your handling code here:
+        CreateDbBuku inputData = new CreateDbBuku();
+        DefaultTableModel tabelData2 = (DefaultTableModel) tabelDataBuku.getModel();   
+   
+        inputData.inputData(Integer.parseInt(inpKodeBuku.getText()),inpJudulBuku.getText(),inpNamaPengarang.getText(),inpPenerbit.getText(),Integer.parseInt(inpTahunTerbit.getText()),inpJenisBuku.getText(),inpStatus.getText(),Integer.parseInt(inpJumlahBuku.getText()));
+        ResultSet rs = tampilData.tampilkanData(this.inpKodeBuku.getText());
+        try{
+            
+            if(rs.next()){
+                tabelData2.addRow(new Object[]{rs.getString("kode_buku"), rs.getString("judul_buku"),rs.getString("nama_pengarang"), rs.getString("penerbit"), rs.getString("tahun_terbit"), rs.getString("jenis_buku"), rs.getString("status"), rs.getString("jumlah_buku_tersedia")});
+            } else{
+                System.out.println("Data tidak bisa ditampilkan");
+            }
+        }catch(SQLException e){
+            System.out.println("Pesan Error : " + e.getMessage());
+        }
     }//GEN-LAST:event_btnSimpanBukuActionPerformed
 
     private void tabelDataBukuAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tabelDataBukuAncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_tabelDataBukuAncestorAdded
+
+    private void inpStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inpStatusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inpStatusActionPerformed
 
     /**
      * @param args the command line arguments
