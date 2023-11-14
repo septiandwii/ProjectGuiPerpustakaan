@@ -2,27 +2,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package crudAnggota;
+package crudTransaksi;
 
-import java.sql.Statement;
-import com.mycompany.projectperpustakaan.Koneksi;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  *
  * @author ACER
  */
-public class CreatDbAnggota {
+public class CreateDbTransaksi {
     String url = "jdbc:mysql://localhost:3306/database_perpustakaan";
     String username = "root";
     String password = "";
     
-     public void inputData(String nama, String nim, String programStudi, String nomorTlp, String jenisKelamin){
+     public void inputData(int kodeBuku, String nim, String nama){
         try{
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection koneksi = DriverManager.getConnection(url,username,  password);
-            String query = String.format("insert into data_anggota(nama, nim, program_studi, nomor_telp, jenis_kelamin)values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\");",nama, nim, programStudi, nomorTlp, jenisKelamin);
+            Date peminjamanBuku = new Date(System.currentTimeMillis());
+            Date pengembalianBuku = new Date(peminjamanBuku.getTime() + 432000000);
+            String query = String.format("insert into transaksi(kode_buku, nim, nama, peminjaman_buku, pengembalian_buku, pengembalian_buku_transaksi, denda)values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\");", kodeBuku, nim, nama, peminjamanBuku, pengembalianBuku);
             Statement st = koneksi.createStatement();
             st.executeUpdate(query);
             st.close();

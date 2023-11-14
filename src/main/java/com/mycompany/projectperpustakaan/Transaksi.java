@@ -9,6 +9,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import org.jdatepicker.*;
 /**
@@ -142,6 +144,8 @@ public class Transaksi extends javax.swing.JFrame {
         btnHapusDatabase = new javax.swing.JButton();
         btnKeluar = new javax.swing.JButton();
         pilihanNim = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        inpNama = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -215,6 +219,11 @@ public class Transaksi extends javax.swing.JFrame {
         });
 
         btnSimpanData.setText("Simpan");
+        btnSimpanData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimpanDataActionPerformed(evt);
+            }
+        });
 
         btnSimpanDatabase.setText("Simpan");
         btnSimpanDatabase.addActionListener(new java.awt.event.ActionListener() {
@@ -237,6 +246,15 @@ public class Transaksi extends javax.swing.JFrame {
         pilihanNim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pilihanNimActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Nama");
+
+        inpNama.setEditable(false);
+        inpNama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inpNamaActionPerformed(evt);
             }
         });
 
@@ -280,12 +298,19 @@ public class Transaksi extends javax.swing.JFrame {
                                     .addComponent(inpTanggalPeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel5)
-                                        .addComponent(jLabel7))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel5)
+                                                .addComponent(jLabel7))
+                                            .addGap(0, 0, Short.MAX_VALUE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addGap(0, 0, Short.MAX_VALUE)
+                                            .addComponent(jLabel6)))
+                                    .addGap(18, 18, 18)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(pilihanNim, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(inptKodePeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(inptKodePeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(inpNama, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(14, 14, 14)
                                 .addComponent(btnKeluar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -332,7 +357,11 @@ public class Transaksi extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(inptKodePeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(41, 41, 41)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(inpNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addGap(69, 69, 69)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(pilihanNim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -348,7 +377,7 @@ public class Transaksi extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(63, Short.MAX_VALUE))
+                        .addContainerGap(52, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
@@ -410,9 +439,26 @@ public class Transaksi extends javax.swing.JFrame {
     }//GEN-LAST:event_btnKeluarActionPerformed
 
     private void pilihanNimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pilihanNimActionPerformed
-        // TODO add your handling code here:
         
+        String nim = pilihanNim.getSelectedItem().toString();
+        TampilDataAnggota dataAnggota = new TampilDataAnggota();
+        ResultSet rsA = dataAnggota.tampilkanData(nim);
+        try {
+            while(rsA.next()) {
+                inpNama.setText(rsA.getString("nama"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Transaksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_pilihanNimActionPerformed
+
+    private void btnSimpanDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanDataActionPerformed
+        
+    }//GEN-LAST:event_btnSimpanDataActionPerformed
+
+    private void inpNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inpNamaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inpNamaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -426,6 +472,7 @@ public class Transaksi extends javax.swing.JFrame {
     private javax.swing.JButton btnSimpanData;
     private javax.swing.JButton btnSimpanDatabase;
     private javax.swing.JTextField inpKodeBuku;
+    private javax.swing.JTextField inpNama;
     private javax.swing.JTextField inpNamaBuku;
     private javax.swing.JTextField inpNamaPengarang;
     private javax.swing.JTextField inpTahunTerbit;
@@ -440,6 +487,7 @@ public class Transaksi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
