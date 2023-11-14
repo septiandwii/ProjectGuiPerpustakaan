@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.projectperpustakaan;
+import crudBuku.DeleteDbBuku;
 import crudBuku.UpdateDbBuku;
 import crudBuku.CreateDbBuku;
 import crudBuku.CreateDbBuku;
@@ -239,6 +240,11 @@ public class DataBuku extends javax.swing.JFrame {
         });
 
         buttonHapusBuku.setText("Hapus");
+        buttonHapusBuku.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonHapusBukuActionPerformed(evt);
+            }
+        });
 
         buttonCariBuku.setText("Cari");
 
@@ -448,6 +454,20 @@ public class DataBuku extends javax.swing.JFrame {
         tabel.addRow(new Object[]{inpKodeBuku.getText(), inpJudulBuku.getText(), inpNamaPengarang.getText(),inpPenerbit.getText(), inpTahunTerbit.getText(), inpJenisBuku.getText(), inpStatus.getText(), inpJumlahBuku.getText()});
         tabel.removeRow(selectedRow);
     }//GEN-LAST:event_buttonEditBukuActionPerformed
+
+    private void buttonHapusBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHapusBukuActionPerformed
+        DeleteDbBuku deleteData = new DeleteDbBuku();
+        deleteData.deleteData(inpKodeBuku.getText());
+        DefaultTableModel tabel = (DefaultTableModel) tabelDataBuku.getModel();
+        tabel.removeRow(selectedRow);
+        inpKodeBuku.setText("");
+        inpJudulBuku.setText("");
+        inpNamaPengarang.setText("");
+        inpTahunTerbit.setText("");
+        inpJenisBuku.setText("");
+        inpStatus.setText("");
+        inpJumlahBuku.setText("");
+    }//GEN-LAST:event_buttonHapusBukuActionPerformed
 
     /**
      * @param args the command line arguments
