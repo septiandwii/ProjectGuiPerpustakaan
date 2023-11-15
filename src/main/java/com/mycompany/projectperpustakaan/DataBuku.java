@@ -131,7 +131,7 @@ public class DataBuku extends javax.swing.JFrame {
         buttonEditBuku = new javax.swing.JButton();
         buttonHapusBuku = new javax.swing.JButton();
         buttonCariBuku = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        inpCariBuku = new javax.swing.JTextField();
         buttonKeluarBuku = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -254,9 +254,9 @@ public class DataBuku extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        inpCariBuku.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                inpCariBukuActionPerformed(evt);
             }
         });
 
@@ -328,7 +328,7 @@ public class DataBuku extends javax.swing.JFrame {
                                 .addComponent(buttonKeluarBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(33, 33, 33))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(inpCariBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(buttonCariBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(49, 49, 49))))
@@ -371,7 +371,7 @@ public class DataBuku extends javax.swing.JFrame {
                         .addGap(56, 56, 56)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(buttonCariBuku)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(inpCariBuku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(31, 31, 31)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -425,9 +425,9 @@ public class DataBuku extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inpJumlahBukuActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void inpCariBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inpCariBukuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_inpCariBukuActionPerformed
 
     private void buttonKeluarBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonKeluarBukuActionPerformed
         dispose();
@@ -487,8 +487,8 @@ public class DataBuku extends javax.swing.JFrame {
 
     private void buttonCariBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCariBukuActionPerformed
                 ResultSet rs;
-        if(!"".equals(buttonCariBuku.getText())) {
-            rs = tampilData.tampilkanData(buttonCariBuku.getText());
+        if(!"".equals(inpCariBuku.getText())) {
+            rs = tampilData.tampilkanData(inpCariBuku.getText());
         } else {
             rs = tampilData.tampilkanDataSemuaBuku();
         }
@@ -500,7 +500,7 @@ public class DataBuku extends javax.swing.JFrame {
                 tabel.removeRow(i);
             }
             while(rs.next()){
-                tabel.addRow(new Object[]{inpKodeBuku.getText(), inpJudulBuku.getText(), inpNamaPengarang.getText(),inpPenerbit.getText(), inpTahunTerbit.getText(), inpJenisBuku.getText(), inpStatus.getText(), inpJumlahBuku.getText()});
+                tabel.addRow(new Object[]{rs.getInt("kode_buku"), rs.getString("judul_buku"),rs.getString("nama_pengarang"), rs.getString("penerbit"), rs.getString("tahun_terbit"), rs.getString("jenis_buku"), rs.getString("status"), rs.getString("jumlah_buku_tersedia")});
             }
             
         }catch(SQLException e){
@@ -519,6 +519,7 @@ public class DataBuku extends javax.swing.JFrame {
     private javax.swing.JButton buttonEditBuku;
     private javax.swing.JButton buttonHapusBuku;
     private javax.swing.JButton buttonKeluarBuku;
+    private javax.swing.JTextField inpCariBuku;
     private javax.swing.JTextField inpJenisBuku;
     private javax.swing.JTextField inpJudulBuku;
     private javax.swing.JTextField inpJumlahBuku;
@@ -537,7 +538,6 @@ public class DataBuku extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tabelDataBuku;
     // End of variables declaration//GEN-END:variables
 }
