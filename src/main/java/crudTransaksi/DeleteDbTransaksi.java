@@ -29,11 +29,11 @@ public class DeleteDbTransaksi {
             st.executeUpdate(query);
             st.close();
             System.out.println("Koneksi ditutup...");
-            JOptionPane.showMessageDialog(rootPane, "HAPUS DATA BERHASIL");
+            JOptionPane.showMessageDialog(rootPane, "TRANSAKSI SELESAI");
 
          }catch (ClassNotFoundException | SQLException ex){
            System.out.println("Terdapat Error : "+ex.getMessage());  
-           JOptionPane.showMessageDialog(rootPane, "HAPUS DATA GAGAL");
+           JOptionPane.showMessageDialog(rootPane, "TERJADI KESALAHAN");
        }
     }
 }
