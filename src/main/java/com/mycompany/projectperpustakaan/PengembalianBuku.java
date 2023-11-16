@@ -217,7 +217,7 @@ public class PengembalianBuku extends javax.swing.JFrame {
         UpdateDbTransaksi updateDbTransaksi = new UpdateDbTransaksi();
         updateDbTransaksi.updateData(pengembalianBuku.toString(), pengembalianBukuAnggota.toString(), idTransaksi, denda);
         DeleteDbTransaksi deleteDbTransaksi = new DeleteDbTransaksi();
-        deleteDbTransaksi.deleteData(String.format("%s", idTransaksi));
+        deleteDbTransaksi.deleteData(String.format("%s", idTransaksi), rootPane);
         UpdateDbBuku updateDbBuku = new UpdateDbBuku();
         updateDbBuku.kembalikanBuku(kodeBuku);
         dispose();

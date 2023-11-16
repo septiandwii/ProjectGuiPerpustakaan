@@ -382,16 +382,15 @@ public class DataAnggota extends javax.swing.JFrame {
 
     private void buttonEditAnggotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditAnggotaActionPerformed
         UpdateDbAnggota updateData = new UpdateDbAnggota();
-        updateData.updateData(inpNama.getText(), inpNim.getText(), inpProgramStudi.getText(),inpNo.getText(), pilihanJenisKelamin.getSelectedItem().toString());
+        updateData.updateData(inpNama.getText(), inpNim.getText(), inpProgramStudi.getText(),inpNo.getText(), pilihanJenisKelamin.getSelectedItem().toString(), rootPane);
         DefaultTableModel tabel = (DefaultTableModel) tabelDataAnggota.getModel();
         tabel.addRow(new Object[]{inpNama.getText(), inpNim.getText(), inpProgramStudi.getText(),inpNo.getText(), pilihanJenisKelamin.getSelectedItem().toString()});
         tabel.removeRow(selectedRow);
-        JOptionPane.showMessageDialog(rootPane, "EDIT DATA BERHASIL");
     }//GEN-LAST:event_buttonEditAnggotaActionPerformed
 
     private void buttonDeleteAnggotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteAnggotaActionPerformed
         DeleteDbAnggota deleteData = new DeleteDbAnggota();
-        deleteData.deleteData(inpNim.getText());
+        deleteData.deleteData(inpNim.getText(), rootPane);
         DefaultTableModel tabel = (DefaultTableModel) tabelDataAnggota.getModel();
         tabel.removeRow(selectedRow);
         inpNama.setText("");
@@ -399,7 +398,7 @@ public class DataAnggota extends javax.swing.JFrame {
         inpProgramStudi.setText("");
         inpNo.setText("");
         pilihanJenisKelamin.setSelectedItem("Laki-laki");
-        JOptionPane.showMessageDialog(rootPane, "HAPUS DATA BERHASIL");
+        
     }//GEN-LAST:event_buttonDeleteAnggotaActionPerformed
 
     private void buttonKeluarAnggotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonKeluarAnggotaActionPerformed

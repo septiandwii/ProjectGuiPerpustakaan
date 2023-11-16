@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
 
 /**
  *
@@ -18,7 +20,7 @@ public class UpdateDbBuku {
     String username = "root";
     String password = "";
     
-     public void updateData(int kode_buku, String judul_buku, String nama_pengarang, String penerbit, int tahun_terbit, String jenis_buku, int jumlah_buku_tersedia){
+     public void updateData(int kode_buku, String judul_buku, String nama_pengarang, String penerbit, int tahun_terbit, String jenis_buku, int jumlah_buku_tersedia, JRootPane rootPane){
         try{
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection koneksi = DriverManager.getConnection(url,username,  password);
@@ -27,9 +29,11 @@ public class UpdateDbBuku {
             st.executeUpdate(query);
             st.close();
             System.out.println("Koneksi ditutup...");
+            JOptionPane.showMessageDialog(rootPane, "EDIT DATA BERHASIL");
 
          }catch (ClassNotFoundException | SQLException ex){
            System.out.println("Terdapat Error : "+ex.getMessage());  
+           JOptionPane.showMessageDialog(rootPane, "EDIT DATA GAGAL");
        }
     }
     

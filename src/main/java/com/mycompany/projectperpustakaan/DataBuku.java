@@ -451,8 +451,7 @@ public class DataBuku extends javax.swing.JFrame {
     private void btnSimpanBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanBukuActionPerformed
         CreateDbBuku inputData = new CreateDbBuku();
         DefaultTableModel tabelData2 = (DefaultTableModel) tabelDataBuku.getModel();   
-   
-        inputData.inputData(Integer.parseInt(inpKodeBuku.getText()),inpJudulBuku.getText(),inpNamaPengarang.getText(),inpPenerbit.getText(),Integer.parseInt(inpTahunTerbit.getText()),inpJenisBuku.getText(),Integer.parseInt(inpJumlahBuku.getText()));
+        inputData.inputData(Integer.parseInt(inpKodeBuku.getText()),inpJudulBuku.getText(),inpNamaPengarang.getText(),inpPenerbit.getText(),Integer.parseInt(inpTahunTerbit.getText()),inpJenisBuku.getText(),Integer.parseInt(inpJumlahBuku.getText()), rootPane);
         ResultSet rs = tampilData.tampilkanData(this.inpKodeBuku.getText());
         try{
             
@@ -473,7 +472,7 @@ public class DataBuku extends javax.swing.JFrame {
     private void buttonEditBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditBukuActionPerformed
         // TODO add your handling code here:
         UpdateDbBuku updateData = new UpdateDbBuku();
-        updateData.updateData(Integer.parseInt(inpKodeBuku.getText()),inpJudulBuku.getText(),inpNamaPengarang.getText(),inpPenerbit.getText(),Integer.parseInt(inpTahunTerbit.getText()),inpJenisBuku.getText(),Integer.parseInt(inpJumlahBuku.getText()));
+        updateData.updateData(Integer.parseInt(inpKodeBuku.getText()),inpJudulBuku.getText(),inpNamaPengarang.getText(),inpPenerbit.getText(),Integer.parseInt(inpTahunTerbit.getText()),inpJenisBuku.getText(),Integer.parseInt(inpJumlahBuku.getText()), rootPane);
         DefaultTableModel tabel = (DefaultTableModel) tabelDataBuku.getModel();
         tabel.addRow(new Object[]{inpKodeBuku.getText(), inpJudulBuku.getText(), inpNamaPengarang.getText(),inpPenerbit.getText(), inpTahunTerbit.getText(), inpJenisBuku.getText(), inpJumlahBuku.getText()});
         tabel.removeRow(selectedRow);
@@ -482,7 +481,7 @@ public class DataBuku extends javax.swing.JFrame {
     private void buttonHapusBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHapusBukuActionPerformed
         //TODO add your handling code here:
         DeleteDbBuku deleteData = new DeleteDbBuku();
-        deleteData.deleteData(inpKodeBuku.getText());
+        deleteData.deleteData(inpKodeBuku.getText(), rootPane);
         DefaultTableModel tabel = (DefaultTableModel) tabelDataBuku.getModel();
         tabel.removeRow(selectedRow);
         inpKodeBuku.setText("");
@@ -491,6 +490,7 @@ public class DataBuku extends javax.swing.JFrame {
         inpTahunTerbit.setText("");
         inpJenisBuku.setText("");
         inpJumlahBuku.setText("");
+        
     }//GEN-LAST:event_buttonHapusBukuActionPerformed
 
     private void buttonCariBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCariBukuActionPerformed

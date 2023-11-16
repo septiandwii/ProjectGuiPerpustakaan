@@ -11,6 +11,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
 
 /**
  *
@@ -21,7 +23,7 @@ public class CreateDbTransaksi {
     String username = "root";
     String password = ""; 
     
-     public void inputData(int kodeBuku, String nim, String nama, String idTransaksi){
+     public void inputData(int kodeBuku, String nim, String nama, String idTransaksi, JRootPane rootPane){
         try{
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection koneksi = DriverManager.getConnection(url,username,  password);
@@ -34,9 +36,11 @@ public class CreateDbTransaksi {
             st.executeUpdate(queryEmptyBuku);
             st.close();
             System.out.println("Koneksi ditutup...");
+            JOptionPane.showMessageDialog(rootPane, "SIMPAN DATA BERHASIL");
 
          }catch (ClassNotFoundException | SQLException ex){
            ex.printStackTrace();
+           JOptionPane.showMessageDialog(rootPane, "SIMPAN DATA GAGAL");
        }
     }
 }

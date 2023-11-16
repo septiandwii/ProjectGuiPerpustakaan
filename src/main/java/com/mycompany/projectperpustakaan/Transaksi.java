@@ -543,7 +543,7 @@ public class Transaksi extends javax.swing.JFrame {
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         CreateDbTransaksi inputData = new CreateDbTransaksi();
         DefaultTableModel tabelData3 = (DefaultTableModel) tabelTransaksi.getModel();     
-        inputData.inputData(Integer.parseInt(inpKodeBuku.getText()), pilihanNim.getSelectedItem().toString(), inpNama.getText(), inptKodePeminjaman.getText());
+        inputData.inputData(Integer.parseInt(inpKodeBuku.getText()), pilihanNim.getSelectedItem().toString(), inpNama.getText(), inptKodePeminjaman.getText(), rootPane);
         ResultSet rsT = tampilData2.tampilkanDataTransaksi(this.inptKodePeminjaman.getText());
         try{
             if(rsT.next()){

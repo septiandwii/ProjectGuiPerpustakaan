@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
 /**
  *
  * @author hafid punyaa
@@ -17,7 +19,7 @@ public class CreateDbBuku {
     String username = "root";
     String password = "";
     
-     public void inputData(int kode_buku, String judul_buku, String nama_pengarang, String penerbit, int tahun_terbit, String jenis_buku, int jumlah_buku_tersedia){
+     public void inputData(int kode_buku, String judul_buku, String nama_pengarang, String penerbit, int tahun_terbit, String jenis_buku, int jumlah_buku_tersedia, JRootPane rootPane){
         try{
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection koneksi = DriverManager.getConnection(url,username,  password);
@@ -26,9 +28,11 @@ public class CreateDbBuku {
             st.executeUpdate(query);
             st.close();
             System.out.println("Koneksi ditutup...");
+            JOptionPane.showMessageDialog(rootPane, "SIMPAN DATA BERHASIL");
 
          }catch (ClassNotFoundException | SQLException ex){
            System.out.println("Terdapat Error : "+ex.getMessage());  
+           JOptionPane.showMessageDialog(rootPane, "SIMPAN DATA GAGAL");
        }
     }
 }

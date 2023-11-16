@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
 
 /**
  *
@@ -18,7 +20,7 @@ public class UpdateDbAnggota {
     String username = "root";
     String password = "";
     
-     public void updateData(String nama, String nim, String programStudi, String nomorTlp, String jenisKelamin){
+     public void updateData(String nama, String nim, String programStudi, String nomorTlp, String jenisKelamin, JRootPane rootPane){
         try{
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection koneksi = DriverManager.getConnection(url,username,  password);
@@ -27,9 +29,10 @@ public class UpdateDbAnggota {
             st.executeUpdate(query);
             st.close();
             System.out.println("Koneksi ditutup...");
-
+            JOptionPane.showMessageDialog(rootPane, "EDIT DATA BERHASIL");
          }catch (ClassNotFoundException | SQLException ex){
            System.out.println("Terdapat Error : "+ex.getMessage());  
+           JOptionPane.showMessageDialog(rootPane, "EDIT DATA GAGAL");
        }
     }
 }
