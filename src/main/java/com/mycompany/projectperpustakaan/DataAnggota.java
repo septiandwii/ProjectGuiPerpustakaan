@@ -128,10 +128,11 @@ public class DataAnggota extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(90, 99, 106));
 
-        jPanel1.setBackground(new java.awt.Color(175, 179, 183));
+        jPanel1.setBackground(new java.awt.Color(124, 133, 148));
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(19, 46, 53), 12, true));
 
-        buttonSimpanAnggota.setBackground(new java.awt.Color(105, 129, 141));
+        buttonSimpanAnggota.setBackground(new java.awt.Color(74, 88, 89));
+        buttonSimpanAnggota.setFont(new java.awt.Font("Schadow BT", 0, 12)); // NOI18N
         buttonSimpanAnggota.setForeground(new java.awt.Color(239, 239, 239));
         buttonSimpanAnggota.setText("Simpan");
         buttonSimpanAnggota.addActionListener(new java.awt.event.ActionListener() {
@@ -146,7 +147,8 @@ public class DataAnggota extends javax.swing.JFrame {
             }
         });
 
-        buttonEditAnggota.setBackground(new java.awt.Color(105, 129, 141));
+        buttonEditAnggota.setBackground(new java.awt.Color(74, 88, 89));
+        buttonEditAnggota.setFont(new java.awt.Font("Schadow BT", 0, 12)); // NOI18N
         buttonEditAnggota.setForeground(new java.awt.Color(237, 236, 236));
         buttonEditAnggota.setText("Edit");
         buttonEditAnggota.addActionListener(new java.awt.event.ActionListener() {
@@ -155,7 +157,8 @@ public class DataAnggota extends javax.swing.JFrame {
             }
         });
 
-        buttonDeleteAnggota.setBackground(new java.awt.Color(105, 129, 141));
+        buttonDeleteAnggota.setBackground(new java.awt.Color(74, 88, 89));
+        buttonDeleteAnggota.setFont(new java.awt.Font("Schadow BT", 0, 12)); // NOI18N
         buttonDeleteAnggota.setForeground(new java.awt.Color(237, 237, 237));
         buttonDeleteAnggota.setText("Hapus");
         buttonDeleteAnggota.addActionListener(new java.awt.event.ActionListener() {
@@ -164,9 +167,11 @@ public class DataAnggota extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Schadow BT", 1, 14)); // NOI18N
         jLabel1.setText("NIM : ");
 
-        buttonKeluarAnggota.setBackground(new java.awt.Color(105, 129, 141));
+        buttonKeluarAnggota.setBackground(new java.awt.Color(93, 107, 107));
+        buttonKeluarAnggota.setFont(new java.awt.Font("Schadow BT", 0, 12)); // NOI18N
         buttonKeluarAnggota.setForeground(new java.awt.Color(237, 237, 237));
         buttonKeluarAnggota.setText("Keluar");
         buttonKeluarAnggota.addActionListener(new java.awt.event.ActionListener() {
@@ -187,8 +192,12 @@ public class DataAnggota extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Schadow BT", 1, 14)); // NOI18N
         jLabel2.setText("NAMA :");
 
+        buttonCariAnggota.setBackground(new java.awt.Color(105, 129, 141));
+        buttonCariAnggota.setFont(new java.awt.Font("Schadow BT", 0, 12)); // NOI18N
+        buttonCariAnggota.setForeground(new java.awt.Color(255, 255, 255));
         buttonCariAnggota.setText("Cari");
         buttonCariAnggota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,9 +211,10 @@ public class DataAnggota extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Mongolian Baiti", 1, 36)); // NOI18N
         jLabel6.setText("DATA ANGGOTA");
 
+        jLabel3.setFont(new java.awt.Font("Schadow BT", 1, 14)); // NOI18N
         jLabel3.setText("Program Studi :");
 
         inpProgramStudi.addActionListener(new java.awt.event.ActionListener() {
@@ -213,8 +223,10 @@ public class DataAnggota extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Schadow BT", 1, 14)); // NOI18N
         jLabel4.setText("Jenis Kelamin :");
 
+        tabelDataAnggota.setFont(new java.awt.Font("Schadow BT", 0, 12)); // NOI18N
         tabelDataAnggota.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -226,66 +238,70 @@ public class DataAnggota extends javax.swing.JFrame {
         tabelDataAnggota.setUpdateSelectionOnSort(false);
         jScrollPane1.setViewportView(tabelDataAnggota);
 
+        pilihanJenisKelamin.setBackground(new java.awt.Color(74, 88, 89));
+        pilihanJenisKelamin.setFont(new java.awt.Font("Schadow BT", 0, 12)); // NOI18N
+        pilihanJenisKelamin.setForeground(new java.awt.Color(255, 255, 255));
         pilihanJenisKelamin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laki-laki", "Perempuan" }));
 
-        jLabel5.setText("No_Telepon :");
+        jLabel5.setFont(new java.awt.Font("Schadow BT", 1, 14)); // NOI18N
+        jLabel5.setText("No Telepon :");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(678, 678, 678))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel4))
-                                .addGap(73, 73, 73)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(pilihanJenisKelamin, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(inpNo, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(inpProgramStudi, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(inpNim, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(inpNama, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(inpCari, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(buttonCariAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(buttonSimpanAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(buttonEditAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(buttonDeleteAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(buttonKeluarAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)))
-                                .addGap(0, 6, Short.MAX_VALUE)))
-                        .addGap(38, 38, 38))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addGap(296, 296, 296))
+                .addGap(245, 245, 245))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(678, 688, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel4))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1))))
+                        .addGap(61, 61, 61)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(inpNama)
+                            .addComponent(inpNim)
+                            .addComponent(inpProgramStudi)
+                            .addComponent(inpNo)
+                            .addComponent(pilihanJenisKelamin, javax.swing.GroupLayout.Alignment.TRAILING, 0, 146, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(95, 95, 95)
+                                .addComponent(buttonSimpanAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(buttonEditAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(buttonDeleteAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(buttonKeluarAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(184, 184, 184)
+                                .addComponent(inpCari, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(buttonCariAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(50, 50, 50))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(36, 36, 36)
                 .addComponent(jLabel6)
-                .addGap(42, 42, 42)
+                .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(inpNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -306,16 +322,14 @@ public class DataAnggota extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(pilihanJenisKelamin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonKeluarAnggota)
-                    .addComponent(buttonDeleteAnggota)
+                    .addComponent(pilihanJenisKelamin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonSimpanAnggota)
                     .addComponent(buttonEditAnggota)
-                    .addComponent(buttonSimpanAnggota))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(buttonDeleteAnggota)
+                    .addComponent(buttonKeluarAnggota))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -326,7 +340,9 @@ public class DataAnggota extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 71, Short.MAX_VALUE))
         );
 
         pack();
