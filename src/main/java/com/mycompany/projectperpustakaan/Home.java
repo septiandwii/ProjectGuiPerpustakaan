@@ -4,6 +4,7 @@
  */
 package com.mycompany.projectperpustakaan;
 
+
 /**
  *
  * @author ACER
@@ -27,26 +28,16 @@ public class Home extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        buttonDataAnggota = new javax.swing.JButton();
         buttonDataBuku = new javax.swing.JButton();
         buttonTransaksi = new javax.swing.JButton();
         buttonKeluar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        buttonDataAnggota = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 255));
+        jPanel1.setBackground(new java.awt.Color(19, 46, 53));
 
-        buttonDataAnggota.setBackground(java.awt.Color.red);
-        buttonDataAnggota.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        buttonDataAnggota.setText("Data Anggota");
-        buttonDataAnggota.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonDataAnggotaActionPerformed(evt);
-            }
-        });
-
-        buttonDataBuku.setBackground(java.awt.Color.red);
+        buttonDataBuku.setBackground(new java.awt.Color(105, 129, 141));
         buttonDataBuku.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         buttonDataBuku.setText("Data Buku");
         buttonDataBuku.addActionListener(new java.awt.event.ActionListener() {
@@ -55,7 +46,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        buttonTransaksi.setBackground(java.awt.Color.red);
+        buttonTransaksi.setBackground(new java.awt.Color(105, 129, 141));
         buttonTransaksi.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         buttonTransaksi.setText("Transaksi");
         buttonTransaksi.addActionListener(new java.awt.event.ActionListener() {
@@ -64,7 +55,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        buttonKeluar.setBackground(java.awt.Color.red);
+        buttonKeluar.setBackground(new java.awt.Color(105, 129, 141));
         buttonKeluar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         buttonKeluar.setText("Keluar");
         buttonKeluar.addActionListener(new java.awt.event.ActionListener() {
@@ -73,40 +64,39 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("E:\\Download\\slide-1.png")); // NOI18N
-        jLabel1.setText("jLabel1");
+        buttonDataAnggota.setBackground(new java.awt.Color(105, 129, 141));
+        buttonDataAnggota.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        buttonDataAnggota.setText("Data Anggota");
+        buttonDataAnggota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonDataAnggotaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(buttonDataAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68)
-                        .addComponent(buttonDataBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(67, 67, 67)
-                        .addComponent(buttonTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonKeluar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(buttonDataAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67)
+                .addComponent(buttonDataBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(72, 72, 72)
+                .addComponent(buttonTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addComponent(buttonKeluar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(518, 518, 518)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonDataAnggota)
-                    .addComponent(buttonDataBuku)
                     .addComponent(buttonTransaksi)
-                    .addComponent(buttonKeluar))
+                    .addComponent(buttonKeluar)
+                    .addComponent(buttonDataAnggota)
+                    .addComponent(buttonDataBuku))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -141,6 +131,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonDataBukuActionPerformed
 
     private void buttonDataAnggotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDataAnggotaActionPerformed
+        // TODO add your handling code here:
         dispose();
         DataAnggota dataAnggota = new DataAnggota();
     }//GEN-LAST:event_buttonDataAnggotaActionPerformed
@@ -186,7 +177,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton buttonDataBuku;
     private javax.swing.JButton buttonKeluar;
     private javax.swing.JButton buttonTransaksi;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
