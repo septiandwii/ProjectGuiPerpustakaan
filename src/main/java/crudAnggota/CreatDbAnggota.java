@@ -9,6 +9,8 @@ import com.mycompany.projectperpustakaan.Koneksi;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
 /**
  *
  * @author ACER
@@ -18,7 +20,7 @@ public class CreatDbAnggota {
     String username = "root";
     String password = "";
     
-     public void inputData(String nama, String nim, String programStudi, String nomorTlp, String jenisKelamin){
+     public void inputData(String nama, String nim, String programStudi, String nomorTlp, String jenisKelamin, JRootPane rootPane){
         try{
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection koneksi = DriverManager.getConnection(url,username,  password);
@@ -27,9 +29,10 @@ public class CreatDbAnggota {
             st.executeUpdate(query);
             st.close();
             System.out.println("Koneksi ditutup...");
-
+            JOptionPane.showMessageDialog(rootPane, "INPUT DATA BERHASIL");
          }catch (ClassNotFoundException | SQLException ex){
            System.out.println("Terdapat Error : "+ex.getMessage());  
+           JOptionPane.showMessageDialog(rootPane, "INPUT DATA GAGAL");
        }
     }
 }

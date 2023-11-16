@@ -4,6 +4,7 @@
  */
 package com.mycompany.projectperpustakaan;
 
+import crudBuku.UpdateDbBuku;
 import crudTransaksi.DeleteDbTransaksi;
 import crudTransaksi.UpdateDbTransaksi;
 import java.util.Date;
@@ -217,6 +218,8 @@ public class PengembalianBuku extends javax.swing.JFrame {
         updateDbTransaksi.updateData(pengembalianBuku.toString(), pengembalianBukuAnggota.toString(), idTransaksi, denda);
         DeleteDbTransaksi deleteDbTransaksi = new DeleteDbTransaksi();
         deleteDbTransaksi.deleteData(String.format("%s", idTransaksi));
+        UpdateDbBuku updateDbBuku = new UpdateDbBuku();
+        updateDbBuku.kembalikanBuku(kodeBuku);
         dispose();
         Transaksi transaksi = new Transaksi();
         transaksi.setVisible(true);

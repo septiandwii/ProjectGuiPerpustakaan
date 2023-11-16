@@ -367,17 +367,12 @@ public class DataAnggota extends javax.swing.JFrame {
 
     private void buttonSimpanAnggotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSimpanAnggotaActionPerformed
         CreatDbAnggota inputData = new CreatDbAnggota();
-        DefaultTableModel tabelData2 = (DefaultTableModel) tabelDataAnggota.getModel();   
-        inputData.inputData(inpNama.getText(), inpNim.getText(), inpProgramStudi.getText(),inpNo.getText(), pilihanJenisKelamin.getSelectedItem().toString());
-        ResultSet rs = tampilData.tampilkanData(this.inpNim.getText());
-        try{
-            
+        DefaultTableModel tabelData2 = (DefaultTableModel) tabelDataAnggota.getModel();  
+        try{ 
+            inputData.inputData(inpNama.getText(), inpNim.getText(), inpProgramStudi.getText(),inpNo.getText(), pilihanJenisKelamin.getSelectedItem().toString(), rootPane);
+            ResultSet rs = tampilData.tampilkanData(this.inpNim.getText());
             if(rs.next()){
                 tabelData2.addRow(new Object[]{rs.getString("nama"), rs.getString("nim"),rs.getString("program_studi"), rs.getString("nomor_telp"), rs.getString("jenis_kelamin")});
-                JOptionPane.showMessageDialog(rootPane, "INPUT DATA BERHASIL");
-            } else{
-                JOptionPane.showMessageDialog(rootPane, "INPUT DATA GAGAL");
-                System.out.println("Data tidak bisa ditampilkan");
             }
         }catch(SQLException e){
             System.out.println("Pesan Error : " + e.getMessage());

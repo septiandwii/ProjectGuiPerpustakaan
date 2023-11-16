@@ -28,7 +28,7 @@ public class Transaksi extends javax.swing.JFrame {
      */
     TampilDataBuku tampilData = new TampilDataBuku();
     TampilDbTransaksi tampilData2 = new TampilDbTransaksi();
-    int selectedRow = -1;
+    int selectedBuku = -1;
     int kode_buku;
     String nim;
     String nama;
@@ -77,7 +77,10 @@ public class Transaksi extends javax.swing.JFrame {
         try{
             int i = 0;
             while(rs.next()){
-                model.addRow(new Object[]{rs.getString("kode_buku"), rs.getString("judul_buku"),rs.getString("nama_pengarang"), rs.getString("penerbit"), rs.getString("tahun_terbit"), rs.getString("jenis_buku"), rs.getString("status"), rs.getString("jumlah_buku_tersedia")});
+                Boolean tersedia = rs.getInt("jumlah_buku_tersedia") > 0;
+                if(tersedia) {
+                    model.addRow(new Object[]{rs.getString("kode_buku"), rs.getString("judul_buku"),rs.getString("nama_pengarang"), rs.getString("penerbit"), rs.getString("tahun_terbit"), rs.getString("jenis_buku"), rs.getString("status"), rs.getString("jumlah_buku_tersedia")});   
+                }
                 i++;
             }
         }catch(SQLException e){
@@ -94,7 +97,7 @@ public class Transaksi extends javax.swing.JFrame {
             public void mousePressed(MouseEvent e) {
 //                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
                 int row = tabelDataBuku.getSelectedRow();
-                selectedRow = row;
+                selectedBuku = row;
                 inpKodeBuku.setText(tabelDataBuku.getValueAt(row, 0).toString());
                 inpNamaBuku.setText(tabelDataBuku.getValueAt(row, 1).toString());
                 inpNamaPengarang.setText(tabelDataBuku.getValueAt(row, 2).toString());
@@ -519,16 +522,29 @@ public class Transaksi extends javax.swing.JFrame {
         CreateDbTransaksi inputData = new CreateDbTransaksi();
         DefaultTableModel tabelData3 = (DefaultTableModel) tabelTransaksi.getModel();     
         inputData.inputData(Integer.parseInt(inpKodeBuku.getText()), pilihanNim.getSelectedItem().toString(), inpNama.getText(), inptKodePeminjaman.getText());
-        ResultSet rsB = tampilData2.tampilkanDataTransaksi(this.inptKodePeminjaman.getText());
+        ResultSet rsT = tampilData2.tampilkanDataTransaksi(this.inptKodePeminjaman.getText());
         try{
-            
-            if(rsB.next()){
-                tabelData3.addRow(new Object[]{rsB.getString("kode_buku"),rsB.getString("nim"),rsB.getString("nama"), rsB.getString("peminjaman_buku"), rsB.getString("pengembalian_buku"),rsB.getString("pengembalian_buku_anggota"), rsB.getString("id_transaksi")});
+            if(rsT.next()){
+                tabelData3.addRow(new Object[]{rsT.getString("kode_buku"),rsT.getString("nim"),rsT.getString("nama"), rsT.getString("peminjaman_buku"), rsT.getString("pengembalian_buku"),rsT.getString("pengembalian_buku_anggota"), rsT.getString("id_transaksi")});
             } else{
                 System.out.println("Data tidak bisa ditampilkan");
             }
         }catch(SQLException e){
 //            System.out.println("Pesan Error : " + e.getMessage());
+            e.printStackTrace();
+        }
+        
+        ResultSet rsB = tampilData.tampilkanData(tabelDataBuku.getValueAt(selectedBuku, 0).toString());
+        DefaultTableModel tabel = (DefaultTableModel) tabelDataBuku.getModel();
+        try {
+            if(rsB.next()) {
+                Boolean tersedia = rsB.getInt("jumlah_buku_tersedia") > 0;
+                if(tersedia){
+                    tabel.addRow(new Object[]{rsB.getString("kode_buku"), rsB.getString("judul_buku"),rsB.getString("nama_pengarang"), rsB.getString("penerbit"), rsB.getString("tahun_terbit"), rsB.getString("jenis_buku"), rsB.getString("status"), rsB.getString("jumlah_buku_tersedia")});
+                }
+                tabel.removeRow(selectedBuku);
+            }
+        } catch(SQLException e) {
             e.printStackTrace();
         }
     

@@ -32,4 +32,19 @@ public class UpdateDbBuku {
            System.out.println("Terdapat Error : "+ex.getMessage());  
        }
     }
+    
+     public void kembalikanBuku(int kode_buku){
+        try{
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection koneksi = DriverManager.getConnection(url,username,  password);
+            String query = String.format("update data_buku set jumlah_buku_tersedia = jumlah_buku_tersedia + 1, status = \"Tersedia\" where kode_buku = \"%s\";",kode_buku);
+            Statement st = koneksi.createStatement();
+            st.executeUpdate(query);
+            st.close();
+            System.out.println("Koneksi ditutup...");
+
+         }catch (ClassNotFoundException | SQLException ex){
+           System.out.println("Terdapat Error : "+ex.getMessage());  
+       }
+    }
 }
