@@ -130,7 +130,6 @@ public class Transaksi extends javax.swing.JFrame {
         try{
             int i = 0;
             while(rsB.next()){
-                System.out.println("AdA");
                 model2.addRow(new Object[]{rsB.getString("kode_buku"), rsB.getString("nim"),rsB.getString("nama"), rsB.getString("peminjaman_buku"), rsB.getString("pengembalian_buku"), rsB.getString("pengembalian_buku_anggota"), rsB.getString("id_transaksi")});
                 i++;
             }
@@ -151,7 +150,7 @@ public class Transaksi extends javax.swing.JFrame {
 //                selectedRow = row;
 //                inptKodePeminjaman.setText(tabelTransaksi.getValueAt(row, 0).toString());
 //                inpNama.setText(tabelTransaksi.getValueAt(row, 1).toString());
-//                pilihanNim.getSelectedItem(tabelTransaksi.getValueAt(row, 2).toString());
+//                pilihanNim.setSelectedItem(tabelTransaksi.getValueAt(row, 2).toString());
 //                inpTahunTerbit.setText(tabelTransaksi.getValueAt(row, 3).toString());
             }
 
@@ -497,16 +496,13 @@ public class Transaksi extends javax.swing.JFrame {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         CreateDbTransaksi inputData = new CreateDbTransaksi();
-        DefaultTableModel tabelData2 = (DefaultTableModel) tabelTransaksi.getModel();  
-        System.out.println(inpKodeBuku.getText());
-        System.out.println(pilihanNim.getSelectedItem());
-        System.out.println(inpNama.getText());        
+        DefaultTableModel tabelData2 = (DefaultTableModel) tabelTransaksi.getModel();     
         inputData.inputData(Integer.parseInt(inpKodeBuku.getText()), pilihanNim.getSelectedItem().toString(), inpNama.getText(), inptKodePeminjaman.getText());
-        ResultSet rs = tampilData.tampilkanData(this.inptKodePeminjaman.getText());
+        ResultSet rsB = tampilData.tampilkanData(this.inptKodePeminjaman.getText());
         try{
             
-            if(rs.next()){
-                tabelData2.addRow(new Object[]{rs.getString("nama"),rs.getString("nim"),rs.getString("program_studi"), rs.getString("nomor_telp"), rs.getString("jenis_kelamin")});
+            if(rsB.next()){
+                tabelData2.addRow(new Object[]{rsB.getString("kode_buku"),rsB.getString("nim"),rsB.getString("nama"), rsB.getString("peminjaman_buku"), rsB.getString("pengembakian_buku"),rsB.getString("pengembalian_buku_anggota"), rsB.getString("id_transaksi")});
             } else{
                 System.out.println("Data tidak bisa ditampilkan");
             }
@@ -514,7 +510,7 @@ public class Transaksi extends javax.swing.JFrame {
 //            System.out.println("Pesan Error : " + e.getMessage());
             e.printStackTrace();
         }
-        
+    
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void inpKodeBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inpKodeBukuActionPerformed

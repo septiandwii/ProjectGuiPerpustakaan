@@ -329,7 +329,6 @@ public class DataAnggota extends javax.swing.JFrame {
     private void buttonSimpanAnggotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSimpanAnggotaActionPerformed
         CreatDbAnggota inputData = new CreatDbAnggota();
         DefaultTableModel tabelData2 = (DefaultTableModel) tabelDataAnggota.getModel();   
-
         inputData.inputData(inpNama.getText(), inpNim.getText(), inpProgramStudi.getText(),inpNo.getText(), pilihanJenisKelamin.getSelectedItem().toString());
         ResultSet rs = tampilData.tampilkanData(this.inpNim.getText());
         try{
