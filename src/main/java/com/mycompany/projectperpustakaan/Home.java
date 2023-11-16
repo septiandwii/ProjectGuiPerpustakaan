@@ -10,6 +10,7 @@ package com.mycompany.projectperpustakaan;
  * @author ACER
  */
 public class Home extends javax.swing.JFrame {
+    // TODO: nyoba denda, pesan/dialog
 
     /**
      * Creates new form Homee

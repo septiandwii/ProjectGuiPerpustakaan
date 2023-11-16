@@ -18,16 +18,15 @@ public class UpdateDbTransaksi {
     String username = "root";
     String password = "";
     
-     public void updateData(int kode_buku, String nim, String nama, String peminjaman_buku, int pengembalian_buku, String pengembalian_buku_anggota, int id_transaksi, int denda){
+     public void updateData(String pengembalian_buku, String pengembalian_buku_anggota, int id_transaksi, double denda){
         try{
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection koneksi = DriverManager.getConnection(url,username,  password);
-            String query = String.format("update transaksi set kode_buku = \"%s\", nim = \"%s\", nama = \"%s\", peminjaman_buku = \"%s\", pengembalian_buku = \"%s\", pengembalian_buku_anggota = \"%s\", id_transaksi = \"%s\", denda = \"%s\" where id_transaksi = \"%s\";" ,kode_buku, nim, nama, pengembalian_buku, pengembalian_buku_anggota, id_transaksi, denda);
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection koneksi = DriverManager.getConnection(url,username,  password);
+            String query = String.format("update transaksi set pengembalian_buku_anggota = \"%s\", denda = \"%s\" where id_transaksi = \"%s\";" ,pengembalian_buku_anggota, denda, id_transaksi);
             Statement st = koneksi.createStatement();
             st.executeUpdate(query);
             st.close();
             System.out.println("Koneksi ditutup...");
-
          }catch (ClassNotFoundException | SQLException ex){
            System.out.println("Terdapat Error : "+ex.getMessage());  
        }

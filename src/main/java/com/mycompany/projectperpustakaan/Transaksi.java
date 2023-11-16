@@ -10,6 +10,7 @@ import crudTransaksi.TampilDbTransaksi;
 import crudTransaksi.UpdateDbTransaksi;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -28,6 +29,15 @@ public class Transaksi extends javax.swing.JFrame {
     TampilDataBuku tampilData = new TampilDataBuku();
     TampilDbTransaksi tampilData2 = new TampilDbTransaksi();
     int selectedRow = -1;
+    int kode_buku;
+    String nim;
+    String nama;
+    Date peminjaman_buku;    
+    Date pengembalian_buku;
+    Date pengembalian_buku_anggota = new Date(System.currentTimeMillis());
+    int id_transaksi;
+    double denda;
+    
     public Transaksi() {
         initComponents();
         // ini logic untuk combobox -> read semua data anggota
@@ -138,6 +148,7 @@ public class Transaksi extends javax.swing.JFrame {
             System.out.println("Pesan Error : " + e.getMessage());
         }
         
+        
         this.tabelTransaksi.addMouseListener(new MouseListener(){
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -146,13 +157,19 @@ public class Transaksi extends javax.swing.JFrame {
 
             @Override
             public void mousePressed(MouseEvent e) {
-//                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-//                int row = tabelTransaksi.getSelectedRow();
-//                selectedRow = row;
-//                inptKodePeminjaman.setText(tabelTransaksi.getValueAt(row, 0).toString());
-//                inpNama.setText(tabelTransaksi.getValueAt(row, 1).toString());
-//                pilihanNim.setSelectedItem(tabelTransaksi.getValueAt(row, 2).toString());
-//                inpTahunTerbit.setText(tabelTransaksi.getValueAt(row, 3).toString());
+                int row = tabelTransaksi.getSelectedRow();
+                kode_buku = Integer.parseInt(tabelTransaksi.getValueAt(row, 0).toString());
+                nim = tabelTransaksi.getValueAt(row, 1).toString();
+                nama = tabelTransaksi.getValueAt(row, 2).toString();
+                peminjaman_buku = Date.valueOf(tabelTransaksi.getValueAt(row, 3).toString());
+                pengembalian_buku = Date.valueOf(tabelTransaksi.getValueAt(row, 4).toString());
+                pengembalian_buku_anggota = new Date(System.currentTimeMillis());
+                id_transaksi =  Integer.parseInt(tabelTransaksi.getValueAt(row, 6).toString());
+                Boolean melebihi = pengembalian_buku_anggota.after(pengembalian_buku);
+                if(melebihi) {
+                    double selisih = pengembalian_buku_anggota.toLocalDate().toEpochDay() - pengembalian_buku.toLocalDate().toEpochDay();
+                    denda = 1000 * selisih;
+                }
             }
 
             @Override
@@ -340,6 +357,11 @@ public class Transaksi extends javax.swing.JFrame {
         });
 
         btnPengembalianBuku.setText("Pengembalian");
+        btnPengembalianBuku.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPengembalianBukuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -447,9 +469,7 @@ public class Transaksi extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(jLabel8))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
@@ -551,12 +571,14 @@ public class Transaksi extends javax.swing.JFrame {
     }//GEN-LAST:event_inpNamaActionPerformed
 
     private void btnEditDatabaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditDatabaseActionPerformed
-        UpdateDbTransaksi updateData = new UpdateDbTransaksi();
-        updateData.updateData(inpNama .getText(), inpNim.getText(), inpProgramStudi.getText(),inpNo.getText(), pilihanJenisKelamin.getSelectedItem().toString());
-        DefaultTableModel tabel = (DefaultTableModel) tabelDataAnggota.getModel();
-        tabel.addRow(new Object[]{inpNama.getText(), inpNim.getText(), inpProgramStudi.getText(),inpNo.getText(), pilihanJenisKelamin.getSelectedItem().toString()});
-        tabel.removeRow(selectedRow);
+       
     }//GEN-LAST:event_btnEditDatabaseActionPerformed
+
+    private void btnPengembalianBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPengembalianBukuActionPerformed
+          dispose();
+          PengembalianBuku pengembalianBuku = new PengembalianBuku(kode_buku, nim, nama, peminjaman_buku, pengembalian_buku, pengembalian_buku_anggota, id_transaksi, denda);
+          pengembalianBuku.setVisible(true);
+    }//GEN-LAST:event_btnPengembalianBukuActionPerformed
 
     /**
      * @param args the command line arguments

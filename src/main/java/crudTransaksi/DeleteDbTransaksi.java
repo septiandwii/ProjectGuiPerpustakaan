@@ -18,11 +18,11 @@ public class DeleteDbTransaksi {
     String username = "root";
     String password = "";
     
-     public void deleteData(String kode_buku){
+     public void deleteData(String idTransaksi){
         try{
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection koneksi = DriverManager.getConnection(url,username,  password);
-            String query = String.format("delete from transaksi where kode_buku = \"%s\";", kode_buku);
+            String query = String.format("delete from transaksi where id_transaksi = \"%s\";", idTransaksi);
             Statement st = koneksi.createStatement();
             st.executeUpdate(query);
             st.close();
