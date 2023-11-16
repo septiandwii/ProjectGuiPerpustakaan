@@ -18,11 +18,11 @@ public class UpdateDbTransaksi {
     String username = "root";
     String password = "";
     
-     public void updateData(int kode_buku, String nim, int peminjaman_buku, String penerbit, int tahun_terbit, String jenis_buku, String status, int jumlah_buku_tersedia){
+     public void updateData(int kode_buku, String nim, String nama, String peminjaman_buku, int pengembalian_buku, String pengembalian_buku_anggota, int id_transaksi, int denda){
         try{
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection koneksi = DriverManager.getConnection(url,username,  password);
-            String query = String.format("update transaksi set kode_buku = \"%s\", nim = \"%s\", nama = \"%s\", pengembalian_buku = \"%s\", pengembalian_buku_anggota = \"%s\", id_transaksi = \"%s\", denda = \"%s\" where id_transaksi = \"%s\";" ,kode_buku, judul_buku, nama_pengarang, penerbit, tahun_terbit, jenis_buku, status, jumlah_buku_tersedia, kode_buku);
+            String query = String.format("update transaksi set kode_buku = \"%s\", nim = \"%s\", nama = \"%s\", peminjaman_buku = \"%s\", pengembalian_buku = \"%s\", pengembalian_buku_anggota = \"%s\", id_transaksi = \"%s\", denda = \"%s\" where id_transaksi = \"%s\";" ,kode_buku, nim, nama, pengembalian_buku, pengembalian_buku_anggota, id_transaksi, denda);
             Statement st = koneksi.createStatement();
             st.executeUpdate(query);
             st.close();

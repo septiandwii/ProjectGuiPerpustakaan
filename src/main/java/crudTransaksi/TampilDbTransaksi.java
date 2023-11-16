@@ -22,7 +22,7 @@ public class TampilDbTransaksi {
     
 //    String nama, nim, programStudi, nomorTlp, jenisKelamin;
     
-     public ResultSet tampilkanData(String id_transaksi){
+     public ResultSet tampilkanDataTransaksi(String id_transaksi){
         try{
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection koneksi = DriverManager.getConnection(url,username,  password);

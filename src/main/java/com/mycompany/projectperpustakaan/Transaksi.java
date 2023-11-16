@@ -7,6 +7,7 @@ import crudTransaksi.CreateDbTransaksi;
 import crudAnggota.TampilDataAnggota;
 import crudBuku.TampilDataBuku;
 import crudTransaksi.TampilDbTransaksi;
+import crudTransaksi.UpdateDbTransaksi;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.ResultSet;
@@ -496,13 +497,13 @@ public class Transaksi extends javax.swing.JFrame {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         CreateDbTransaksi inputData = new CreateDbTransaksi();
-        DefaultTableModel tabelData2 = (DefaultTableModel) tabelTransaksi.getModel();     
+        DefaultTableModel tabelData3 = (DefaultTableModel) tabelTransaksi.getModel();     
         inputData.inputData(Integer.parseInt(inpKodeBuku.getText()), pilihanNim.getSelectedItem().toString(), inpNama.getText(), inptKodePeminjaman.getText());
-        ResultSet rsB = tampilData.tampilkanData(this.inptKodePeminjaman.getText());
+        ResultSet rsB = tampilData2.tampilkanDataTransaksi(this.inptKodePeminjaman.getText());
         try{
             
             if(rsB.next()){
-                tabelData2.addRow(new Object[]{rsB.getString("kode_buku"),rsB.getString("nim"),rsB.getString("nama"), rsB.getString("peminjaman_buku"), rsB.getString("pengembakian_buku"),rsB.getString("pengembalian_buku_anggota"), rsB.getString("id_transaksi")});
+                tabelData3.addRow(new Object[]{rsB.getString("kode_buku"),rsB.getString("nim"),rsB.getString("nama"), rsB.getString("peminjaman_buku"), rsB.getString("pengembalian_buku"),rsB.getString("pengembalian_buku_anggota"), rsB.getString("id_transaksi")});
             } else{
                 System.out.println("Data tidak bisa ditampilkan");
             }
@@ -550,7 +551,11 @@ public class Transaksi extends javax.swing.JFrame {
     }//GEN-LAST:event_inpNamaActionPerformed
 
     private void btnEditDatabaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditDatabaseActionPerformed
-        // TODO add your handling code here:
+        UpdateDbTransaksi updateData = new UpdateDbTransaksi();
+        updateData.updateData(inpNama .getText(), inpNim.getText(), inpProgramStudi.getText(),inpNo.getText(), pilihanJenisKelamin.getSelectedItem().toString());
+        DefaultTableModel tabel = (DefaultTableModel) tabelDataAnggota.getModel();
+        tabel.addRow(new Object[]{inpNama.getText(), inpNim.getText(), inpProgramStudi.getText(),inpNo.getText(), pilihanJenisKelamin.getSelectedItem().toString()});
+        tabel.removeRow(selectedRow);
     }//GEN-LAST:event_btnEditDatabaseActionPerformed
 
     /**
