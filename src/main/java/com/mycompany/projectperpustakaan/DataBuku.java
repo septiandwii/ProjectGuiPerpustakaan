@@ -172,13 +172,13 @@ public class DataBuku extends javax.swing.JFrame {
         tabelDataBuku.setFont(new java.awt.Font("Schadow BT", 0, 12)); // NOI18N
         tabelDataBuku.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Kode Buku", "Judul Buku", "Nama Pengarang", "Penerbit", "Tahun Terbit", "Jenis Buku", "Status", "Jumlah Buku"
+                "Kode Buku", "Judul Buku", "Nama Pengarang", "Penerbit", "Tahun Terbit", "Jenis Buku", "Jumlah Buku"
             }
         ));
         tabelDataBuku.addAncestorListener(new javax.swing.event.AncestorListener() {
