@@ -211,9 +211,7 @@ public class Transaksi extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelDataBuku = new javax.swing.JTable();
         btnSimpan = new javax.swing.JButton();
-        btnEditDatabase = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        btnHapusDatabase = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelTransaksi = new javax.swing.JTable();
         btnKeluar = new javax.swing.JButton();
@@ -285,23 +283,8 @@ public class Transaksi extends javax.swing.JFrame {
             }
         });
 
-        btnEditDatabase.setBackground(new java.awt.Color(74, 88, 89));
-        btnEditDatabase.setFont(new java.awt.Font("Schadow BT", 0, 12)); // NOI18N
-        btnEditDatabase.setForeground(new java.awt.Color(237, 237, 237));
-        btnEditDatabase.setText("Edit");
-        btnEditDatabase.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditDatabaseActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Mongolian Baiti", 1, 36)); // NOI18N
         jLabel1.setText("DATA PEMINJAMAN BUKU PERPUSTAKAAN");
-
-        btnHapusDatabase.setBackground(new java.awt.Color(74, 88, 89));
-        btnHapusDatabase.setFont(new java.awt.Font("Schadow BT", 0, 12)); // NOI18N
-        btnHapusDatabase.setForeground(new java.awt.Color(237, 237, 237));
-        btnHapusDatabase.setText("Hapus");
 
         tabelTransaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -417,15 +400,7 @@ public class Transaksi extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(50, 50, 50)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(21, 21, 21)
-                        .addComponent(btnEditDatabase, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(btnHapusDatabase, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel5))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(71, 71, 71)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -473,8 +448,10 @@ public class Transaksi extends javax.swing.JFrame {
                                         .addComponent(inpTanggalPeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(108, 108, 108)
-                                .addComponent(jLabel8)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnKeluar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -497,7 +474,7 @@ public class Transaksi extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)))
                 .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(inptKodePeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -510,13 +487,10 @@ public class Transaksi extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(pilihanNim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))
-                        .addGap(53, 53, 53)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnSimpan)
-                            .addComponent(btnEditDatabase)
-                            .addComponent(btnHapusDatabase)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSimpan))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8)
@@ -634,10 +608,6 @@ public class Transaksi extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inpNamaActionPerformed
 
-    private void btnEditDatabaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditDatabaseActionPerformed
-       
-    }//GEN-LAST:event_btnEditDatabaseActionPerformed
-
     private void btnPengembalianBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPengembalianBukuActionPerformed
           dispose();
           PengembalianBuku pengembalianBuku = new PengembalianBuku(kode_buku, nim, nama, peminjaman_buku, pengembalian_buku, pengembalian_buku_anggota, id_transaksi, denda);
@@ -650,8 +620,6 @@ public class Transaksi extends javax.swing.JFrame {
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEditDatabase;
-    private javax.swing.JButton btnHapusDatabase;
     private javax.swing.JButton btnKeluar;
     private javax.swing.JButton btnPengembalianBuku;
     private javax.swing.JButton btnSimpan;
