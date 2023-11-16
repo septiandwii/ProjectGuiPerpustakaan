@@ -6,6 +6,7 @@ package com.mycompany.projectperpustakaan;
 import crudTransaksi.CreateDbTransaksi;
 import crudAnggota.TampilDataAnggota;
 import crudBuku.TampilDataBuku;
+import crudTransaksi.TampilDbTransaksi;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.ResultSet;
@@ -24,6 +25,7 @@ public class Transaksi extends javax.swing.JFrame {
      * Creates new form Transaksi
      */
     TampilDataBuku tampilData = new TampilDataBuku();
+    TampilDbTransaksi tampilData2 = new TampilDbTransaksi();
     int selectedRow = -1;
     public Transaksi() {
         initComponents();
@@ -105,6 +107,69 @@ public class Transaksi extends javax.swing.JFrame {
         } );
         // penutup logic tabel transaksi
         
+        
+        
+        String[] columns2 = {
+          "kode_buku",
+          "nim",
+          "nama", 
+          "peminjaman_buku", 
+          "pengembalian_buku",
+          "pengembalian_buku_anggota",
+          "id_transaksi",
+        };
+        DefaultTableModel model2 = new DefaultTableModel(columns2, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        this.tabelTransaksi.setModel(model2);
+        ResultSet rsB = tampilData2.tampilkanDataSemuaTransaksi();
+        
+        try{
+            int i = 0;
+            while(rsB.next()){
+                System.out.println("AdA");
+                model2.addRow(new Object[]{rsB.getString("kode_buku"), rsB.getString("nim"),rsB.getString("nama"), rsB.getString("peminjaman_buku"), rsB.getString("pengembalian_buku"), rsB.getString("pengembalian_buku_anggota"), rsB.getString("id_transaksi")});
+                i++;
+            }
+        }catch(SQLException e){
+            System.out.println("Pesan Error : " + e.getMessage());
+        }
+        
+        this.tabelTransaksi.addMouseListener(new MouseListener(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+//                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+//                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//                int row = tabelTransaksi.getSelectedRow();
+//                selectedRow = row;
+//                inptKodePeminjaman.setText(tabelTransaksi.getValueAt(row, 0).toString());
+//                inpNama.setText(tabelTransaksi.getValueAt(row, 1).toString());
+//                pilihanNim.getSelectedItem(tabelTransaksi.getValueAt(row, 2).toString());
+//                inpTahunTerbit.setText(tabelTransaksi.getValueAt(row, 3).toString());
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+//                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+//                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+//                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+        } );
         setVisible(true);
     }
     
@@ -164,8 +229,21 @@ public class Transaksi extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tabelDataBuku);
+        if (tabelDataBuku.getColumnModel().getColumnCount() > 0) {
+            tabelDataBuku.getColumnModel().getColumn(0).setResizable(false);
+            tabelDataBuku.getColumnModel().getColumn(1).setResizable(false);
+            tabelDataBuku.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel1.setText("DATA PEMINJAMAN BUKU PERPUSTAKAAN");

@@ -22,11 +22,11 @@ public class TampilDbTransaksi {
     
 //    String nama, nim, programStudi, nomorTlp, jenisKelamin;
     
-     public ResultSet tampilkanData(String kode_buku){
+     public ResultSet tampilkanData(String id_transaksi){
         try{
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection koneksi = DriverManager.getConnection(url,username,  password);
-            String query = String.format("select * from transaksi where kode_buku = \"%s\";", kode_buku);
+            String query = String.format("select * from transaksi where id_transaksi = \"%s\";", id_transaksi);
             Statement st = koneksi.createStatement();
             this.rs = st.executeQuery(query);
             return this.rs;
@@ -36,7 +36,7 @@ public class TampilDbTransaksi {
         return this.rs;
      }
      
-     public ResultSet tampilkanDataSemuaBuku(){
+     public ResultSet tampilkanDataSemuaTransaksi(){
         try{
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection koneksi = DriverManager.getConnection(url,username,  password);
