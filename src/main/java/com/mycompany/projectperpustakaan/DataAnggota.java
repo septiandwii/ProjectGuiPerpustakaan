@@ -12,6 +12,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -356,7 +357,9 @@ public class DataAnggota extends javax.swing.JFrame {
             
             if(rs.next()){
                 tabelData2.addRow(new Object[]{rs.getString("nama"), rs.getString("nim"),rs.getString("program_studi"), rs.getString("nomor_telp"), rs.getString("jenis_kelamin")});
+                JOptionPane.showMessageDialog(rootPane, "INPUT DATA BERHASIL");
             } else{
+                JOptionPane.showMessageDialog(rootPane, "INPUT DATA GAGAL");
                 System.out.println("Data tidak bisa ditampilkan");
             }
         }catch(SQLException e){
@@ -371,6 +374,7 @@ public class DataAnggota extends javax.swing.JFrame {
         DefaultTableModel tabel = (DefaultTableModel) tabelDataAnggota.getModel();
         tabel.addRow(new Object[]{inpNama.getText(), inpNim.getText(), inpProgramStudi.getText(),inpNo.getText(), pilihanJenisKelamin.getSelectedItem().toString()});
         tabel.removeRow(selectedRow);
+        JOptionPane.showMessageDialog(rootPane, "EDIT DATA BERHASIL");
     }//GEN-LAST:event_buttonEditAnggotaActionPerformed
 
     private void buttonDeleteAnggotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteAnggotaActionPerformed
@@ -383,6 +387,7 @@ public class DataAnggota extends javax.swing.JFrame {
         inpProgramStudi.setText("");
         inpNo.setText("");
         pilihanJenisKelamin.setSelectedItem("Laki-laki");
+        JOptionPane.showMessageDialog(rootPane, "HAPUS DATA BERHASIL");
     }//GEN-LAST:event_buttonDeleteAnggotaActionPerformed
 
     private void buttonKeluarAnggotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonKeluarAnggotaActionPerformed
